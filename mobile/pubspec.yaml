@@ -1,0 +1,36 @@
+name: trafego_alert_mobile
+description: Aplicativo Móvel Offline-First de Coleta de Trafegabilidade para Ariquemes/RO
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Geolocalização e Mapas
+  geolocator: ^10.1.0
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
+
+  # Conectividade e API
+  connectivity_plus: ^5.0.2
+  dio: ^5.4.1
+
+  # Autenticação e Backend
+  supabase_flutter: ^2.5.0
+
+  # HTTP para APIs externas (OSRM)
+  http: ^1.2.1
+
+  # Armazenamento Offline Local
+  shared_preferences: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true

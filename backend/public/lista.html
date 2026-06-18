@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafegoAlerta - Listagem e Relatórios</title>
+  <meta name="description" content="Tabela de pontos críticos e trafegabilidade das vias rurais de Ariquemes/RO.">
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Customizado (Vanilla CSS) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Layout Grid Central (2 colunas para listas) -->
+  <div class="list-dashboard-container">
+    
+    <!-- BARRA LATERAL ESQUERDA: Identidade, Navegação e Status -->
+    <aside class="sidebar-left">
+      <header class="app-header">
+        <div class="logo-area">
+          <i data-lucide="shield-alert" class="icon-logo"></i>
+          <h1>TrafegoAlerta</h1>
+        </div>
+        <div class="header-actions">
+          <button class="btn-theme-toggle" id="btn-theme-toggle" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+          </button>
+          <span class="badge-status online"><span class="dot"></span>Centro Ativo</span>
+        </div>
+      </header>
+
+      <!-- Indicador do usuário logado -->
+      <div class="user-info-bar" id="user-info-bar">
+        <div class="user-info-left">
+          <div class="user-avatar" id="user-avatar">A</div>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">Carregando...</span>
+            <span class="user-role" id="user-display-role">--</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="btn-logout" title="Sair da conta">
+          <i data-lucide="log-out"></i>
+        </button>
+      </div>
+
+      <!-- Navegação Interna -->
+      <nav class="nav-menu">
+        <a href="/" class="nav-item">
+          <i data-lucide="map"></i>
+          <span>Mapa e Monitoramento</span>
+        </a>
+        <a href="/lista" class="nav-item active">
+          <i data-lucide="list"></i>
+          <span>Registros e Situações</span>
+        </a>
+      </nav>
+
+      <!-- Seção Clima Detalhada -->
+      <section class="card climate-card">
+        <h2><i data-lucide="cloud-rain"></i> Monitoramento Climático</h2>
+        <div class="climate-content">
+          <!-- Linha principal: Temperatura + Precipitação -->
+          <div class="weather-hero">
+            <div class="weather-hero-left">
+              <span class="weather-icon" id="weather-icon">🌤️</span>
+              <div class="temp-display">
+                <span class="temp-val" id="temp-val">--</span>
+                <span class="temp-unit">°C</span>
+              </div>
+            </div>
+            <div class="weather-hero-right">
+              <div class="weather-label-val">
+                <i data-lucide="droplets"></i>
+                <span id="precip-val">-- mm</span>
+              </div>
+              <span class="weather-sublabel">Chuva prevista (24h)</span>
+            </div>
+          </div>
+
+          <!-- Barra de precipitação -->
+          <div class="climate-status-bar">
+            <div class="bar-fill" id="precip-bar" style="width: 0%"></div>
+          </div>
+
+          <!-- Grid de métricas detalhadas -->
+          <div class="weather-details-grid">
+            <div class="weather-detail-item">
+              <i data-lucide="wind"></i>
+              <div class="detail-content">
+                <span class="detail-val" id="wind-val">-- km/h</span>
+                <span class="detail-lbl">Vento</span>
+              </div>
+            </div>
+            <div class="weather-detail-item">
+              <i data-lucide="droplet"></i>
+              <div class="detail-content">
+                <span class="detail-val" id="humidity-val">--%</span>
+                <span class="detail-lbl">Umidade</span>
+              </div>
+            </div>
+            <div class="weather-detail-item">
+              <i data-lucide="gauge"></i>
+              <div class="detail-content">
+                <span class="detail-val" id="pressure-val">-- hPa</span>
+                <span class="detail-lbl">Pressão</span>
+              </div>
+            </div>
+            <div class="weather-detail-item">
+              <i data-lucide="eye"></i>
+              <div class="detail-content">
+                <span class="detail-val" id="visibility-val">-- km</span>
+                <span class="detail-lbl">Visibilidade</span>
+              </div>
+            </div>
+            <div class="weather-detail-item">
+              <i data-lucide="sun"></i>
+              <div class="detail-content">
+                <span class="detail-val" id="uv-val">--</span>
+                <span class="detail-lbl">Índice UV</span>
+              </div>
+            </div>
+            <div class="weather-detail-item">
+              <i data-lucide="thermometer"></i>
+              <div class="detail-content">
+                <span class="detail-val" id="feelslike-val">--°C</span>
+                <span class="detail-lbl">Sensação</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previsão próximas horas -->
+          <div class="hourly-forecast" id="hourly-forecast">
+            <!-- Renderizado via JS -->
+          </div>
+
+          <!-- Alerta climático -->
+          <div class="climate-warning" id="climate-alert-box">
+            <i data-lucide="info"></i> <span id="climate-alert-text">Carregando dados climáticos...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Estatísticas Rápidas -->
+      <section class="card stats-card">
+        <h2><i data-lucide="bar-chart-3"></i> Situação das Vias</h2>
+        <div class="stats-grid">
+          <div class="stat-box success">
+            <span class="number" id="stats-livre">0</span>
+            <span class="label">Livres</span>
+          </div>
+          <div class="stat-box warning">
+            <span class="number" id="stats-atencao">0</span>
+            <span class="label">Atenção</span>
+          </div>
+          <div class="stat-box danger">
+            <span class="number" id="stats-bloqueado">0</span>
+            <span class="label">Bloqueadas</span>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL (Tabelas) -->
+    <main class="main-content">
+      
+      <!-- Cabeçalho -->
+      <header class="list-header">
+        <h2>Painel de Registros e Trafegabilidade</h2>
+        
+        <!-- Abas -->
+        <div class="list-tabs">
+          <button class="list-tab active" id="tab-incidentes">
+            <i data-lucide="alert-triangle"></i> Pontos Críticos Registrados
+          </button>
+          <button class="list-tab" id="tab-vias">
+            <i data-lucide="route"></i> Trafegabilidade das Vias (Estradas)
+          </button>
+        </div>
+      </header>
+
+      <!-- 1. SEÇÃO DE PONTOS CRÍTICOS -->
+      <section id="section-incidentes" class="tab-content">
+        <!-- Filtros e Busca -->
+        <div class="filters-bar">
+          <div class="search-box-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" id="search-incidentes" placeholder="Buscar incidentes por descrição ou tipo...">
+          </div>
+          
+          <select id="filter-incidentes-tipo" class="filter-select">
+            <option value="">Todos os Tipos</option>
+            <option value="atolamento">Atolamento</option>
+            <option value="erosao">Erosão</option>
+            <option value="bueiro_danificado">Bueiro Danificado</option>
+            <option value="ponte_caida">Ponte Danificada/Caída</option>
+            <option value="alagamento">Alagamento</option>
+            <option value="buraco_severo">Buraco Severo</option>
+            <option value="queda_arvore">Queda de Árvore</option>
+            <option value="deslizamento">Deslizamento</option>
+            <option value="animal_na_pista">Animal na Pista</option>
+            <option value="obra_em_andamento">Obra em Andamento</option>
+          </select>
+
+          <select id="filter-incidentes-status" class="filter-select">
+            <option value="ativos">Apenas Ativos</option>
+            <option value="todos">Todos (Ativos + Resolvidos)</option>
+            <option value="resolvidos">Apenas Resolvidos</option>
+          </select>
+
+          <button id="btn-export-incidentes" class="btn-export">
+            <i data-lucide="download"></i> Exportar CSV
+          </button>
+        </div>
+
+        <!-- Tabela -->
+        <div class="list-table-container">
+          <table class="premium-table" id="table-incidentes">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Coordenadas</th>
+                <th>Data de Registro</th>
+                <th>Status</th>
+                <th style="width: 120px; text-align: center;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-incidentes">
+              <tr>
+                <td colspan="6" class="table-empty-state">
+                  <i data-lucide="loader" class="spin"></i> Carregando registros...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. SEÇÃO DE VIAS RURAIS -->
+      <section id="section-vias" class="tab-content" style="display: none;">
+        <!-- Filtros e Busca -->
+        <div class="filters-bar">
+          <div class="search-box-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" id="search-vias" placeholder="Buscar via por nome, tipo ou jurisdição...">
+          </div>
+          
+          <select id="filter-vias-status" class="filter-select">
+            <option value="">Todos os Status</option>
+            <option value="livre">🟢 Livre</option>
+            <option value="atencao">🟡 Atenção</option>
+            <option value="bloqueado">🔴 Bloqueado</option>
+          </select>
+
+          <select id="filter-vias-pavimento" class="filter-select">
+            <option value="">Todos os Pavimentos</option>
+            <option value="terra">Terra (Não pavimentada)</option>
+            <option value="asfalto">Asfalto (Pavimentada)</option>
+          </select>
+
+          <button id="btn-export-vias" class="btn-export">
+            <i data-lucide="download"></i> Exportar CSV
+          </button>
+        </div>
+
+        <!-- Tabela -->
+        <div class="list-table-container">
+          <table class="premium-table" id="table-vias">
+            <thead>
+              <tr>
+                <th>Estrada Rural / Via</th>
+                <th>Situação</th>
+                <th>Índice de Risco</th>
+                <th>Chuva Local</th>
+                <th>Pavimento</th>
+                <th>Veículos Principais</th>
+                <th>Atualizado em</th>
+                <th style="width: 80px; text-align: center;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-vias">
+              <tr>
+                <td colspan="8" class="table-empty-state">
+                  <i data-lucide="loader" class="spin"></i> Carregando estradas...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+    
+  </div>
+
+  <!-- Scripts -->
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Icons Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Script da Página de Listas -->
+  <script src="/lista.js"></script>
+</body>
+</html>

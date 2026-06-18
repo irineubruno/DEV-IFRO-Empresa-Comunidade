@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafegoAlerta — Acesso ao Centro de Comando</title>
+  <meta name="description" content="Acesse o painel de monitoramento preditivo de trafegabilidade de Ariquemes/RO.">
+
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- Fundo animado -->
+  <div class="bg-animated">
+    <div class="bg-gradient-orb orb-1"></div>
+    <div class="bg-gradient-orb orb-2"></div>
+    <div class="bg-gradient-orb orb-3"></div>
+  </div>
+
+  <!-- Container principal -->
+  <div class="login-wrapper">
+
+    <!-- Logo e título -->
+    <div class="login-brand">
+      <div class="brand-icon">
+        <i data-lucide="shield-alert"></i>
+      </div>
+      <h1>TrafegoAlerta</h1>
+      <p class="brand-tagline">Centro de Comando — Ariquemes/RO</p>
+    </div>
+
+    <!-- Card de Login/Cadastro -->
+    <div class="auth-card">
+
+      <!-- Abas -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" data-tab="login">Entrar</button>
+        <button class="auth-tab" id="tab-register" data-tab="register">Cadastrar</button>
+      </div>
+
+      <!-- Formulário de Login -->
+      <form id="form-login" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">
+            <i data-lucide="mail"></i> E-mail
+          </label>
+          <input type="email" id="login-email" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="login-password">
+            <i data-lucide="lock"></i> Senha
+          </label>
+          <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-auth-primary" id="btn-login">
+          <i data-lucide="log-in"></i> Entrar no Centro de Comando
+        </button>
+      </form>
+
+      <!-- Formulário de Cadastro -->
+      <form id="form-register" class="auth-form" style="display: none;">
+        <div class="form-group">
+          <label for="reg-name">
+            <i data-lucide="user"></i> Nome completo
+          </label>
+          <input type="text" id="reg-name" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-email">
+            <i data-lucide="mail"></i> E-mail
+          </label>
+          <input type="email" id="reg-email" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">
+            <i data-lucide="lock"></i> Senha
+          </label>
+          <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="reg-funcao">
+            <i data-lucide="badge-check"></i> Tipo de Usuário
+          </label>
+          <select id="reg-funcao" required>
+            <option value="cidadao">Cidadão</option>
+            <option value="motorista">Motorista / Transportador</option>
+            <option value="produtor">Produtor Rural</option>
+            <option value="secretaria_obras">Secretaria de Obras</option>
+            <option value="administrador">Administrador do Sistema</option>
+          </select>
+        </div>
+
+        <div class="form-section-label">
+          <i data-lucide="truck"></i> Veículo (opcional)
+        </div>
+
+        <div class="form-group">
+          <label for="reg-veiculo-tipo">Tipo de Veículo</label>
+          <select id="reg-veiculo-tipo">
+            <option value="">— Nenhum —</option>
+            <option value="carro_passeio">Carro de Passeio</option>
+            <option value="moto">Moto</option>
+            <option value="caminhao_graos">Caminhão de Grãos</option>
+            <option value="caminhao_madeira">Caminhão de Madeira</option>
+            <option value="onibus_escolar">Ônibus Escolar</option>
+            <option value="bicicleta">Bicicleta</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-veiculo-placa">Placa</label>
+            <input type="text" id="reg-veiculo-placa" placeholder="ABC-1234" maxlength="8">
+          </div>
+          <div class="form-group">
+            <label for="reg-veiculo-desc">Descrição</label>
+            <input type="text" id="reg-veiculo-desc" placeholder="Ex: Hilux 2020">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-auth-primary" id="btn-register">
+          <i data-lucide="user-plus"></i> Criar Conta
+        </button>
+      </form>
+
+      <!-- Separador -->
+      <div class="auth-divider">
+        <span>ou</span>
+      </div>
+
+      <!-- Acesso rápido demo -->
+      <button class="btn-demo" id="btn-demo">
+        <i data-lucide="zap"></i> Acesso Rápido Demo (Admin)
+      </button>
+
+      <!-- Feedback -->
+      <div class="auth-feedback" id="auth-feedback" style="display: none;">
+        <span id="feedback-text"></span>
+      </div>
+
+    </div>
+
+    <!-- Rodapé -->
+    <p class="login-footer">QUANYX TECNOLOGIA — Hackathon 2026</p>
+  </div>
+
+  <script src="login.js"></script>
+
+</body>
+</html>
