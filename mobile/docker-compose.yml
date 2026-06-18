@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  flutter-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: trafegoalerta-mobile-web:latest
+    container_name: flutter-mobile-web
+    ports:
+      - "7180:80"
+    restart: always
