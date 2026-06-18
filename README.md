@@ -16,12 +16,17 @@ O **TrafegoAlert** é uma solução completa projetada para garantir o escoament
 
 ---
 
-## 🌐 Link do MVP (Online e Acessível)
-O sistema está em produção e pode ser acessado em:
-👉 **[https://trafegoalerta.bisn.com.br/](https://trafegoalerta.bisn.com.br/)**
+## 🌐 Links do MVP (Online e Acessível)
+O sistema está em produção e possui os seguintes acessos:
 
+**Centro de Comando Web (Gestão):**
+👉 **[https://trafegoalerta.bisn.com.br/](https://trafegoalerta.bisn.com.br/)**
 * **Acesso Simplificado:** Não requer credenciais de login para a visualização geral do painel, garantindo que a banca possa testar toda a interface imediatamente sem barreiras.
 * **Painel de Relatórios:** Disponível na rota amigável `/lista` ou pelo botão "Ver Relatórios" no dashboard.
+
+**Aplicativo Mobile (Acesso e Download):**
+👉 **[Versão Web App: https://app-trafegoalerta.bisn.com.br/](https://app-trafegoalerta.bisn.com.br/)**
+👉 **[Download do APK Android](./app-release.apk)** (Baixe e instale no seu celular Android)
 
 ---
 
@@ -118,14 +123,18 @@ A banca pode validar o MVP em menos de 5 minutos seguindo estes passos simples d
 3. Clique em **"Exportar CSV"** para obter uma planilha formatada em UTF-8 com os registros filtrados em tempo real.
 4. Clique em **"Ver no Mapa"** em qualquer linha para ser redirecionado e focado nas coordenadas exatas da ocorrência no mapa principal.
 
-### 3. Aplicativo Móvel (Compilação Local)
-1. Certifique-se de ter o Flutter instalado (`>=3.0.0`).
-2. Abra o terminal na pasta `mobile/` e execute:
-   ```bash
-   flutter pub get
-   flutter run
-   ```
-3. Registre novos alertas e grave rotas no mapa. Para testar o modo **Offline-First**, coloque o aparelho em modo avião, faça o registro do alerta (será exibido um contador de eventos pendentes na barra laranja superior) e desligue o modo avião para ver a sincronização automática acontecer no banco de dados.
+### 3. Aplicativo Móvel (Acesso Web e APK)
+Para testar a experiência do aplicativo que vai para o campo, você possui duas opções:
+
+**Opção A - Via Web App (Sem instalação):**
+1. Acesse o Web App pelo navegador do seu celular ou computador: [https://app-trafegoalerta.bisn.com.br/](https://app-trafegoalerta.bisn.com.br/).
+2. A interface simula o aplicativo nativo e permite registrar ocorrências.
+
+**Opção B - Instalando o APK Android (Nativo):**
+1. Baixe o arquivo **[app-release.apk](./app-release.apk)** que está na raiz deste repositório.
+2. Transfira para o seu dispositivo Android e execute a instalação (pode ser necessário autorizar "Instalar de fontes desconhecidas").
+3. Abra o app "TrafegoAlerta", registre novos alertas e grave rotas no mapa. 
+4. Para testar o modo **Offline-First**, coloque o aparelho em modo avião, faça o registro do alerta (será exibido um contador de eventos pendentes na barra laranja superior) e desligue o modo avião para ver a sincronização automática acontecer no banco de dados.
 
 ---
 
