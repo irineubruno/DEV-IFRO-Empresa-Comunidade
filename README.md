@@ -33,6 +33,7 @@ O sistema está em produção e possui os seguintes acessos:
 ## 🎥 Pitch e Apresentação
 * **Slides da Apresentação:** https://www.canva.com/design/DAHM-SoWeHg/uPlBkme0-MQyUce9M6YXLg/edit
 * **Vídeo do Pitch (YouTube):** https://youtu.be/yMvUSmewMFA
+* **Vídeo do Pitch (Drive):** https://drive.google.com/file/d/1xW4mSgO1US8PI7mFXYKPnYTn5RZkSe4L/view?usp=sharing
 
 ---
 
