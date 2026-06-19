@@ -31,7 +31,7 @@ O sistema está em produção e possui os seguintes acessos:
 ---
 
 ## 🎥 Pitch e Apresentação
-* **Slides da Apresentação:** https://github.com/irineubruno/DEV-IFRO-Empresa-Comunidade/blob/main/README.md
+* **Slides da Apresentação:** https://www.canva.com/design/DAHM-SoWeHg/uPlBkme0-MQyUce9M6YXLg/edit
 * **Vídeo do Pitch (YouTube):** [🔗 Assistir Vídeo de Demonstração (Pitch de 3 minutos)](#) *(Insira o link final aqui)*
 
 ---
