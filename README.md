@@ -7,7 +7,7 @@ O **TrafegoAlert** é uma solução completa projetada para garantir o escoament
 ---
 
 ## 👥 Identificação da Equipe
-* **Desenvolvedor & Líder de Projeto:** Irineu Bruno (GitHub: [@irineubruno](https://github.com/irineubruno))
+* **Alunos:** Bruno Irineu Silva do Nascimento, Aldemir Junior da Silva Pereira
 * **Instituição:** Instituto Federal de Educação, Ciência e Tecnologia de Rondônia (IFRO)
 
 ## 🎯 Categoria e Proponente
